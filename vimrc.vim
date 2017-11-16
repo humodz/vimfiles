@@ -6,14 +6,24 @@ if has("win32")
     let $PATH .= ';C:\Users\Hugo\Anaconda3'
     let $PATH .= ';C:\Users\Hugo\Anaconda3\Scripts'
 
-    let $MYVIMRC = '~\_vimrc'
-
     set langmenu=none
     set guifont=mononoki:h9:cANSI:qDRAFT
     set guioptions-=T
 
     autocmd GUIEnter * simalt ~x
+
+    let $MYVIMRC = '~/_vimrc'
+    let $VIMDIR  = '~/vimfiles'
+else
+    let $VIMDIR  = '~/.vim'
 endif
+
+
+com! Cel exec getline('.')
+com! Cvc edit $MYVIMRC
+com! Cvr edit $VIMDIR/vimrc.vim
+com! Csv source $MYVIMRC
+
 
 call plug#begin('~/.vim/plugged')
 
@@ -152,14 +162,6 @@ let g:syntastic_cpp_include_dirs     = g:syntastic_c_include_dirs
 
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_python_checkers = ['flake8']
-
-
-
-" Commands
-com! Cel exec getline('.')
-com! Cvr edit $MYVIMRC
-com! Csv source $MYVIMRC
-
 
 
 " Maps
