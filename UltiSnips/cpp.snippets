@@ -1,0 +1,27 @@
+extends c
+
+snippet once "ifndef" b
+#ifndef ${1}
+#define $1
+${0}
+#endif
+endsnippet
+
+snippet un "using namespace" b
+using namespace ${0};
+endsnippet
+
+snippet uns "using namespace std" b
+using namespace std;
+endsnippet
+
+snippet s.
+std::
+endsnippet
+
+snippet cl "class"
+class $1
+{
+	$0
+};
+endsnippet

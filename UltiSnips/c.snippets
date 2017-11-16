@@ -1,0 +1,65 @@
+snippet inc "include" b
+#include <${0}>
+endsnippet
+
+snippet inq "include with quotes" b
+#include "${0}"
+endsnippet
+
+snippet maiv "main void" b
+int main(void)
+{
+	${0}
+	return 0;
+}
+endsnippet
+
+snippet main "main args" b
+int main(int argc, char **argv)
+{
+	${0}
+	return 0;
+}
+endsnippet
+
+snippet tds "typedef struct" b
+typedef struct $1
+{
+	$0
+} $1;
+endsnippet
+
+
+# OpenGL
+
+snippet glutwin "glut window" b
+glutInit(&argc, argv);
+glutInitDisplayMode(${1:GLUT_SINGLE | GLUT_RGB});
+glutInitWindowSize(${2:400, 300});
+glutCreateWindow(${3:"OpenGL Window"});
+glutDisplayFunc(${4:draw});
+endsnippet
+
+snippet glb "glBegin glEnd" b
+glBegin(GL_${1});
+{
+	${0}
+}
+glEnd();
+endsnippet
+
+snippet push "glPushMatrix glPopMatrix" b
+glPushMatrix();
+{
+	${0}
+}
+glPopMatrix();
+endsnippet
+
+snippet v2f "glVertex2f" b
+glVertex2f(${0});
+endsnippet
+
+snippet c3f "glColor3f" b
+glColor3f(${0});
+endsnippet

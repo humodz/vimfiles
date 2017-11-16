@@ -1,0 +1,29 @@
+snippet < "tag"
+<$1>$0</${1/(\w+).*/$1/}>
+endsnippet
+
+snippet <, "empty tag"
+<$1 />
+endsnippet
+
+snippet << "multi-line tag"
+<$1>$0
+</${1/(\w+).*/$1/}>
+endsnippet
+
+snippet cl "class"
+class="$1"
+endsnippet
+
+snippet dc "div class"
+<div class="$1">$0
+</div>
+endsnippet
+
+snippet ah "a href"
+<a href="$1"></a>
+endsnippet
+
+snippet im "img src alt"
+<img src="$1" alt="$2" />
+endsnippet
