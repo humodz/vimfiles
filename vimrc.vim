@@ -11,6 +11,7 @@ if has("win32")
     set guioptions-=T
 
     autocmd GUIEnter * simalt ~x
+    autocmd GUIEnter set visualbell t_vb=
 
     let $MYVIMRC = '~/_vimrc'
     let $VIMDIR  = '~/vimfiles'
