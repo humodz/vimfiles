@@ -24,6 +24,7 @@ com! Cel exec getline('.')
 com! Cvc edit $MYVIMRC
 com! Cvr edit $VIMDIR/vimrc.vim
 com! Csv source $MYVIMRC
+com! Cbd bn | bd #
 
 
 call plug#begin('~/.vim/plugged')
@@ -47,6 +48,7 @@ Plug 'elzr/vim-json'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'mattn/emmet-vim'
 Plug 'ap/vim-css-color'
+"Plug 'vim-scripts/html-improved-indentation'
 
 Plug 'veloce/vim-aldmeris'
 Plug 'oblitum/rainbow'
@@ -109,7 +111,7 @@ augroup indentgroup
 augroup END
 
 
-let rainbow_blacklist = ['vim', 'html', 'css']
+let rainbow_blacklist = ['vim', 'html', 'css', 'json']
 
 augroup configgroup
     autocmd FileType *
@@ -135,6 +137,8 @@ let g:rainbow_ctermfgs = [
 
 
 let mapleader = ','
+
+let NERDTreeQuitOnOpen = 1
 
 let g:ctrlp_follow_symlinks = 2
 let g:ctrlp_custom_ignore = 'node_modules\|git'
