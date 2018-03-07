@@ -10,7 +10,9 @@ if has("win32")
     set guifont=mononoki:h9:cANSI:qDRAFT
     set guioptions-=T
 
+    " Open in fullscreen
     autocmd GUIEnter * simalt ~x
+    " Disable chime
     autocmd GUIEnter * set vb t_vb=
 
     let $MYVIMRC = '~/_vimrc'
@@ -27,7 +29,7 @@ com! Csv source $MYVIMRC
 com! Cbd bn | bd #
 
 
-call plug#begin('~/.vim/plugged')
+call plug#begin($VIMDIR . '/plugged')
 
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'easymotion/vim-easymotion'
@@ -48,7 +50,6 @@ Plug 'elzr/vim-json'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'mattn/emmet-vim'
 Plug 'ap/vim-css-color'
-"Plug 'vim-scripts/html-improved-indentation'
 
 Plug 'veloce/vim-aldmeris'
 Plug 'oblitum/rainbow'
@@ -115,10 +116,14 @@ let rainbow_blacklist = ['vim', 'html', 'css', 'json']
 
 augroup configgroup
     autocmd FileType *
-    \ if index(rainbow_blacklist, &ft) < 0 | call rainbow#toggle()
+    \   if index(rainbow_blacklist, &ft) < 0 | call rainbow#toggle()
 
     autocmd BufWritePre,FileWritePre *
     \   call <SID>StripTrailingWhitespaces()
+
+    autocmd BufRead,BufNewFile .jshintrc
+    \   setlocal ft=json
+
     " Light up statusbar when in insertion mode
     autocmd InsertEnter *
     \   hi StatusLine ctermfg=7 term=reverse
@@ -156,13 +161,11 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 let g:syntastic_c_check_header     = 1
-let g:syntastic_c_compiler_options = '-fopenmp -Wall -Wextra'
-let g:syntastic_c_include_dirs     = [
-            \ '/usr/lib/mpich/include',
-            \ '.', 'include', '../include']
+let g:syntastic_c_compiler_options = '-Wall -Wextra'
+let g:syntastic_c_include_dirs     = ['.', 'include', '../include']
 
 let g:syntastic_cpp_check_header     = 1
-let g:syntastic_cpp_compiler_options = '-fopenmp -Wall -Wextra -std=c++14'
+let g:syntastic_cpp_compiler_options = '-Wall -Wextra -std=c++14'
 let g:syntastic_cpp_include_dirs     = g:syntastic_c_include_dirs
 
 let g:syntastic_javascript_checkers = ['jshint']
