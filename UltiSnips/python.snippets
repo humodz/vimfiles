@@ -1,0 +1,33 @@
+snippet main "main" b
+def main():
+	$0
+
+if __name__ == '__main__':
+	main()
+endsnippet
+
+
+
+snippet args "main + argparse" b
+import argparse
+
+
+def main(argv=None):
+	args = parse_args(argv)
+	print(args)
+
+
+def parse_args(argv=None):
+	parser = argparse.ArgumentParser()
+
+	def add(where, option, *args, **kwargs):
+		where.add_argument(option, *args, **kwargs, help=HELP[option])
+
+	$0
+
+	return parser.parse_args(argv)
+
+
+if __name__ == '__main__':
+	main()
+endsnippet
