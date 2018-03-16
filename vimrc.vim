@@ -143,13 +143,10 @@ augroup END
 
 
 let g:rainbow_ctermfgs = [
-            \ 'brown',
             \ 'blue',
-            \ 'red',
-            \ 'cyan',
             \ 'magenta',
+            \ 'brown',
             \ ]
-
 
 let mapleader = ','
 
