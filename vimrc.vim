@@ -3,6 +3,7 @@
 
 if has("win32")
     let $PATH .= ';C:\dev\Python27'
+    let $PATH .= ';C:\dev\mingw64\bin'
     let $PATH .= ';C:\Users\Hugo\Anaconda3'
     let $PATH .= ';C:\Users\Hugo\Anaconda3\Scripts'
 
@@ -17,19 +18,21 @@ if has("win32")
 
     let $MYVIMRC = '~/_vimrc'
     let $VIMDIR  = '~/vimfiles'
+    let $PLUGINS = $VIMDIR . '/plugged'
+elseif has("win32unix")
+    set guioptions-=T
+
+    set rtp+=~/vimfiles
+    let $VIMDIR  = '~/vimfiles'
+    let $PLUGINS = $VIMDIR . '/cyg_plugged'
 else
     let $VIMDIR  = '~/.vim'
+    let $PLUGINS = $VIMDIR . '/plugged'
 endif
 
 
-com! Cel exec getline('.')
-com! Cvc edit $MYVIMRC
-com! Cvr edit $VIMDIR/vimrc.vim
-com! Csv source $MYVIMRC
-com! Cbd bn | bd #
 
-
-call plug#begin($VIMDIR . '/plugged')
+call plug#begin($PLUGINS)
 
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'easymotion/vim-easymotion'
@@ -56,11 +59,17 @@ Plug 'oblitum/rainbow'
 
 call plug#end()
 
+
 filetype plugin indent on
 syntax enable
 
 colorscheme aldmeris
 
+com! Cel exec getline('.')
+com! Cvc edit $MYVIMRC
+com! Cvr edit $VIMDIR/vimrc.vim
+com! Csv source $MYVIMRC
+com! Cbd bn | bd #
 
 set backspace=2 " Windows
 set hidden
@@ -113,13 +122,14 @@ augroup END
 
 
 let rainbow_blacklist = ['vim', 'html', 'css', 'json']
+let whitespace_blacklist = []
 
 augroup configgroup
     autocmd FileType *
     \   if index(rainbow_blacklist, &ft) < 0 | call rainbow#toggle()
 
     autocmd BufWritePre,FileWritePre *
-    \   call <SID>StripTrailingWhitespaces()
+    \   if index(whitespace_blacklist, &ft) < 0 | call <SID>StripTrailingWhitespaces()
 
     autocmd BufRead,BufNewFile .jshintrc
     \   setlocal ft=json
@@ -162,7 +172,7 @@ let g:syntastic_check_on_wq = 0
 
 let g:syntastic_c_check_header     = 1
 let g:syntastic_c_compiler_options = '-Wall -Wextra'
-let g:syntastic_c_include_dirs     = ['.', 'include', '../include']
+let g:syntastic_c_include_dirs     = ['.', 'include', 'build']
 
 let g:syntastic_cpp_check_header     = 1
 let g:syntastic_cpp_compiler_options = '-Wall -Wextra -std=c++14'
