@@ -169,7 +169,7 @@ let g:syntastic_check_on_wq = 0
 
 let g:syntastic_c_check_header     = 1
 let g:syntastic_c_compiler_options = '-Wall -Wextra'
-let g:syntastic_c_include_dirs     = ['.', 'include', 'build']
+let g:syntastic_c_include_dirs     = ['.', 'include', 'build', 'src']
 
 let g:syntastic_cpp_check_header     = 1
 let g:syntastic_cpp_compiler_options = '-Wall -Wextra -std=c++14'
