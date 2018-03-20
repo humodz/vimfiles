@@ -71,6 +71,8 @@ com! Cvr edit $VIMDIR/vimrc.vim
 com! Csv source $MYVIMRC
 com! Cbd bn | bd #
 
+" Display background properly on tmux
+set t_ut=
 set backspace=2 " Windows
 set hidden
 set mouse=a
