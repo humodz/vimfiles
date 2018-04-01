@@ -144,11 +144,7 @@ augroup configgroup
 augroup END
 
 
-let g:rainbow_ctermfgs = [
-            \ 'blue',
-            \ 'magenta',
-            \ 'brown',
-            \ ]
+let g:rainbow_ctermfgs = ['cyan', 'magenta', 'red', 'brown']
 
 let mapleader = ','
 
