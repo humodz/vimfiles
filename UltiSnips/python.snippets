@@ -18,7 +18,7 @@ def main(argv=None):
 
 
 def parse_args(argv=None):
-	parser = argparse.ArgumentParser()
+	parser = argparse.ArgumentParser(description=DESCRIPTION)
 
 	def add(where, option, *args, **kwargs):
 		where.add_argument(option, *args, **kwargs, help=HELP[option])
@@ -26,6 +26,12 @@ def parse_args(argv=None):
 	$0
 
 	return parser.parse_args(argv)
+
+
+DESCRIPTION = None
+
+HELP = dict()
+HELP[''] = ''
 
 
 if __name__ == '__main__':
