@@ -133,6 +133,9 @@ augroup configgroup
     autocmd BufWritePre,FileWritePre *
     \   if index(whitespace_blacklist, &ft) < 0 | call <SID>StripTrailingWhitespaces()
 
+    autocmd Filetype python
+    \   set foldmethod=indent
+
     autocmd BufRead,BufNewFile .jshintrc
     \   setlocal ft=json
 
