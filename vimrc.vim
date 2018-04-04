@@ -42,20 +42,22 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+
+Plug 'oblitum/rainbow'
+Plug 'veloce/vim-aldmeris'
+
+Plug 'davidhalter/jedi-vim'
 Plug 'Vimjas/vim-python-pep8-indent'
 
+Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'airblade/vim-gitgutter'
 
+Plug 'ap/vim-css-color'
 Plug 'danielepiccone/vim-css-indent'
 Plug 'elzr/vim-json'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'mattn/emmet-vim'
-Plug 'ap/vim-css-color'
-
-Plug 'veloce/vim-aldmeris'
-Plug 'oblitum/rainbow'
 
 call plug#end()
 
@@ -123,7 +125,7 @@ augroup indentgroup
 augroup END
 
 
-let rainbow_blacklist = ['vim', 'html', 'css', 'json']
+let rainbow_blacklist = ['vim', 'html', 'css', 'json', 'lex']
 let whitespace_blacklist = []
 
 augroup configgroup
@@ -139,6 +141,9 @@ augroup configgroup
     autocmd BufRead,BufNewFile .jshintrc
     \   setlocal ft=json
 
+    autocmd Filetype r
+    \   setlocal keywordprg=r-help.sh
+
     " Light up statusbar when in insertion mode
     autocmd InsertEnter *
     \   hi StatusLine ctermfg=7 term=reverse
@@ -147,11 +152,7 @@ augroup configgroup
 augroup END
 
 
-let g:rainbow_ctermfgs = [
-            \ 'blue',
-            \ 'magenta',
-            \ 'brown',
-            \ ]
+let g:rainbow_ctermfgs = ['blue', 'magenta', 'brown']
 
 let mapleader = ','
 
